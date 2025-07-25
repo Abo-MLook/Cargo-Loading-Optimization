@@ -15,7 +15,7 @@ def knapsack(weights, values, capacity, index):
     # case 2 - include
     include_values,include_subset = knapsack(weights, values, capacity - weights[index ], index - 1)
     include_values += values[index] # add the value of current including package
-    include_subset += [index] # add the value of current package
+    include_subset += [index] # add the index of current including package
 
     if exclude_values > include_values:
         return exclude_values,exclude_subset
@@ -33,5 +33,5 @@ max_value , optimal_solution_indexes = knapsack(weights, values, capacity, index
 
 print("The optimal Solution :\n")
 for i in optimal_solution_indexes:
-    print(f"Pakage {i} : ${values[i]} value  ||  {weights[i]} weight",end="\n----\n")
+    print(f"Pakage {i+1} : {weights[i]} weight  ||  ${values[i]} value ",end="\n----\n")
 print(f"======\nTotal = ${max_value}")
