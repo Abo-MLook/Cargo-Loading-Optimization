@@ -2,7 +2,7 @@ def knapsackDP(weights, values, capacity):
     n = len(weights)  # Length of weights
 
     # Create a 2D array to store the partial values. dp[i][w] is the best value for capacity w using the first i items.
-    dp = [[0] * (capacity + 1)] * (n + 1)  # Initialize dp table with 0s
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)] # Initialize dp table with 0s
     # Loop through the items
     for i in range(1, n + 1):
         # Loop through the capacity
