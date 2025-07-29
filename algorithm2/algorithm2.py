@@ -1,26 +1,41 @@
 def knapsackDP(weights, values, capacity):
-    n = len(weights)  # Length of weights
+    n = len(weights)
 
-    # Create a 2D array to store the partial values. dp[i][w] is the best value for capacity w using the first i items.
-    dp = [[0] * (capacity + 1) for _ in range(n + 1)] # Initialize dp table with 0s
-    # Loop through the items
+    # Create a 2D DP table
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    # Fill the DP table
     for i in range(1, n + 1):
-        # Loop through the capacity
         for w in range(1, capacity + 1):
-            if weights[i - 1] <= w:  # If the item can be included in the knapsack
-                include = values[i - 1] + dp[i - 1][w - weights[i - 1]]  # Include the item
-                exclude = dp[i - 1][w]  # Exclude the item
-                dp[i][w] = max(include, exclude)  # Choose the better value between including and excluding
+            if weights[i - 1] <= w:
+                include = values[i - 1] + dp[i - 1][w - weights[i - 1]]
+                exclude = dp[i - 1][w]
+                dp[i][w] = max(include, exclude)
             else:
-                dp[i][w] = dp[i - 1][w]  # If the item cannot be included (its weight is greater than the current capacity)
+                dp[i][w] = dp[i - 1][w]
 
-    # return the optimal value that can be achieved with the full capacity
-    return dp[n][capacity]
+    # Trace back to find selected items
+    selected_indexes = []
+    w = capacity
+    for i in range(n, 0, -1):
+        if dp[i][w] != dp[i - 1][w]:
+            selected_indexes.append(i - 1)
+            w -= weights[i - 1]
 
-# Input examples
-weights = [10, 20, 30]  # Weights
-values = [60, 100, 120]  # Values
-capacity = 50  # Max capacity
 
-# print the output
-print(knapsackDP(weights, values, capacity))
+    return dp[n][capacity], selected_indexes
+
+
+# === Input example ===
+weights = [10, 20, 30]       # Weights for each package
+values = [60, 100, 120]      # Corresponding values
+capacity = 50                # Max capacity of the knapsack
+
+# === Function call ===
+max_value, selected_indexes = knapsackDP(weights, values, capacity)
+
+# === Output results ===
+print("The optimal Solution (DP):\n")
+for i in selected_indexes:
+    print(f"Pakage {i+1} : {weights[i]} weight  ||  ${values[i]} value", end="\n----\n")
+print(f"======\nTotal = ${max_value}")

@@ -21,7 +21,7 @@ y_smooth = exp_model(x_smooth)
 
 # Plot
 plt.figure(figsize=(10, 6))
-plt.plot(x_smooth, y_smooth, label='Exponential Fit Curve', color='blue')
+plt.plot(x_smooth, y_smooth, label=r'$2^n$', color='blue')
 plt.scatter(input_sizes, execution_times, color='red', zorder=5)
 
 # Add labels to original points
@@ -32,7 +32,7 @@ for x, y in zip(input_sizes, execution_times):
 # Labels and style
 plt.xlabel('Input Size (n)')
 plt.ylabel('Execution Time (seconds)')
-plt.title('Execution Time Growth of Native Recursive Knapsack (Exponential Curve Fit)')
+plt.title(' Growth of Native Recursive Knapsack(Exponential)')
 plt.grid(True)
 plt.xticks(input_sizes)
 plt.legend()
