@@ -23,7 +23,7 @@ def knapsackDP(weights, values, capacity):
     # Step 3: Backtrack from dp[n][capacity] to find which items were included
     selected_indexes = []
     w = capacity  # Start from full capacity
-    for i in range(n, 0, -1):  # Go backwards from last item
+    for i in range(n, 0, -1):  # Go backwards from lasDt item
         if dp[i][w] != dp[i - 1][w]:
             # This means item i-1 was included
             selected_indexes.append(i - 1)
