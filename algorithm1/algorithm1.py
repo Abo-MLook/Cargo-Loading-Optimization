@@ -28,7 +28,7 @@ values = [60, 100, 120] # the values for each pakages,
 capacity = 50  # maximum capacity
 indexes = len(weights) - 1            # indexes start for top 2 to last one 0  in this example
 
-# Call the knapsack function
+# call the knapsack function
 max_value , optimal_solution_indexes = knapsack(weights, values, capacity, indexes)
 
 print("The optimal Solution :\n")
