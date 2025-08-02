@@ -13,7 +13,7 @@ def knapsack(weights, values, capacity, index):
     exclude_values,exclude_subset = knapsack(weights, values, capacity, index - 1)
 
     # case 2 - include
-    include_values,include_subset = knapsack(weights, values, capacity - weights[index ], index - 1)
+    include_values,include_subset = knapsack(weights, values, capacity - weights[index], index - 1)
     include_values += values[index] # add the value of current including package
     include_subset += [index] # add the index of current including package
 
@@ -23,8 +23,8 @@ def knapsack(weights, values, capacity, index):
         return include_values,include_subset
 
 # input example
-weights = [10, 20, 30] # the weights for each pakages,
-values = [60, 100, 120] # the values for each pakages,
+weights = [10, 20, 30]  # the weights for each pakages,
+values =  [60, 100, 120]  # the values for each pakages,
 capacity = 50  # maximum capacity
 indexes = len(weights) - 1            # indexes start for top 2 to last one 0  in this example
 
